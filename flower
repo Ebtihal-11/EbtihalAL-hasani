@@ -1,0 +1,34 @@
+* import numpy as np 
+* import pandas as pd
+
+from PIL import ImageFile
+from tqdm import tqdm
+import h5py
+import cv2
+
+import matplotlib.pylab as plt
+from matplotlib import cm
+%matplotlib inline
+
+from sklearn.model_selection import train_test_split
+
+from  tensorflow.keras.utils import to_categorical
+from tensorflow.keras.preprocessing import image as keras_image
+
+from tensorflow.keras.models import Sequential, load_model
+from tensorflow.keras.layers import Dense, LSTM, GlobalAveragePooling1D, GlobalAveragePooling2D
+from tensorflow.keras.layers import Activation, Flatten, Dropout, BatchNormalization
+from tensorflow.keras.layers import Conv2D, MaxPooling2D, GlobalMaxPooling2D
+from tensorflow.keras.callbacks import EarlyStopping, ReduceLROnPlateau, ModelCheckpoint
+from tensorflow.keras.layers import PReLU, LeakyReLU
+from sklearn.metrics import confusion_matrix
+from sklearn.metrics import plot_confusion_matrix
+import seaborn as sns
+
+def image_to_tensor(img_path):
+    img = keras_image.load_img("Flower Color/flower_images/" + img_path, target_size=(128, 128))
+    x = keras_image.img_to_array(img)
+    return np.expand_dims(x, axis=0) 
+    
+    
+
